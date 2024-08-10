@@ -1,5 +1,6 @@
 const userModel = require("../models/userModel");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 const registerController = async (req, res) => {
   try {
@@ -31,4 +32,45 @@ const registerController = async (req, res) => {
   }
 };
 
-module.exports = { registerController };
+//login call back
+const loginController = async (req, res) => {
+  try {
+    const User = await userModel.findOne({ email: req.body.email });
+    if (!User) {
+      return res.status(404).send({
+        success: false,
+        message: "Invalid Credentails",
+      });
+    }
+    //comparing password
+    const comparePassword = await bcrypt.compare(
+      req.body.password,
+      User.password
+    );
+    if (!comparePassword) {
+      return res.status(500).send({
+        success: false,
+        message: "Invalid Credentials",
+      });
+    }
+
+    const token = jwt.sign({ userId: User._id }, process.env.JWT_SECRET, {
+      expiresIn: "1d",
+    });
+    return res.status(200).send({
+      success: true,
+      message: "Login Successful",
+      token,
+      User,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error in Login API",
+      error,
+    });
+  }
+};
+
+module.exports = { registerController, loginController };
