@@ -23,3 +23,45 @@ export const userLogin = createAsyncThunk(
     }
   }
 );
+
+export const userRegister = createAsyncThunk(
+  "auth/register",
+  async (
+    {
+      email,
+      password,
+      role,
+      name,
+      organisationName,
+      hospitalName,
+      address,
+      website,
+      phone,
+    },
+    { rejectWithValue }
+  ) => {
+    try {
+      const { data } = await API.post("/auth/register", {
+        email,
+        password,
+        role,
+        name,
+        organisationName,
+        hospitalName,
+        address,
+        website,
+        phone,
+      });
+      if (data.success) {
+        toast.success(data.message);
+        window.location.replace("/login");
+      }
+    } catch (error) {
+      if (error.response && error.response.data.message) {
+        return rejectWithValue(error.response.data.message);
+      } else {
+        return rejectWithValue(error.message);
+      }
+    }
+  }
+);
