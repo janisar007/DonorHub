@@ -20,7 +20,6 @@ const InputType = ({
           value={value}
           name={name}
           onChange={onChange}
-          id="exampleInputEmail1"
           aria-describedby="emailHelp"
         />
       </div>
