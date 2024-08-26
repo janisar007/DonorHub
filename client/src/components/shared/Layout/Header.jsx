@@ -2,9 +2,17 @@ import React from "react";
 import { BiSolidDonateBlood } from "react-icons/bi";
 import { FaUser } from "react-icons/fa";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Header = () => {
   const { user } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.clear();
+    toast.success("Log out successful");
+    navigate("/login");
+  };
   return (
     <div>
       <nav className="navbar">
@@ -17,11 +25,13 @@ const Header = () => {
             <li className="nav-item mx-3">
               <p className="nav-link">
                 <FaUser className="mx-1" />
-                Welcome {user.name}
+                Welcome {user?.name}
               </p>
             </li>
             <li className="nav-item mx-3">
-              <button className="btn btn-danger">Logout</button>
+              <button className="btn btn-danger" onClick={handleLogout}>
+                Logout
+              </button>
             </li>
           </ul>
         </div>
