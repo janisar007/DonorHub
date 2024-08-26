@@ -13,7 +13,7 @@ function App() {
       <ToastContainer />
       <Routes>
         <Route
-          path="/home"
+          path="/"
           element={
             <ProtectedRoute>
               <HomePage />
