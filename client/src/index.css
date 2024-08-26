@@ -2,7 +2,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: #F6F5F5;
 }
 
 .form-banner img{
@@ -163,3 +162,14 @@ width: 100%;
       transform: rotate(-360deg);
     }
   }
+
+.navbar{
+  background-color: black !important;
+  color: white !important;
+
+}
+
+.nav-link,.navbar-brand{
+  background-color: black !important;
+  color: white !important;
+}
