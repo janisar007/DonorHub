@@ -5,18 +5,27 @@ const jwt = require("jsonwebtoken");
 const registerController = async (req, res) => {
   try {
     const existingUser = await userModel.findOne({ email: req.body.email });
+    const existingAdmin = await userModel.findOne({ role: "admin" });
     if (existingUser) {
       return res.status(200).send({
         success: false,
         message: "User already exists",
         existingUser,
       });
+    } else if (req.body.role === "admin" && existingAdmin) {
+      return res.status(200).send({
+        success: false,
+        message: "Admin already exists",
+        existingAdmin,
+      });
     }
+
     //hash password
 
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
     req.body.password = hashedPassword;
+
     //rest data
     const user = new userModel(req.body);
     await user.save();
@@ -66,6 +75,7 @@ const loginController = async (req, res) => {
     const token = jwt.sign({ userId: User._id }, process.env.JWT_SECRET, {
       expiresIn: "1d",
     });
+
     return res.status(200).send({
       success: true,
       message: "Login Successful",
