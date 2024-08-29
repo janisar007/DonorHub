@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import Spinner from "../../components/shared/Spinner";
 import { toast } from "react-toastify";
 
-const Regsiter = () => {
+const Register = () => {
   const { loading, error } = useSelector((state) => state.auth);
   return (
     <>
@@ -32,4 +32,4 @@ const Regsiter = () => {
   );
 };
 
-export default Regsiter;
+export default Register;

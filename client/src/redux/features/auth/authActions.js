@@ -57,6 +57,9 @@ export const userRegister = createAsyncThunk(
         toast.success(data.message);
         window.location.replace("/login");
       }
+      if (!data.success) {
+        toast.error(data.message);
+      }
     } catch (error) {
       if (error.response && error.response.data.message) {
         return rejectWithValue(error.response.data.message);
