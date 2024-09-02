@@ -8,7 +8,7 @@ const Modal = () => {
   const [inventoryType, setInventoryType] = useState("in");
   const [bloodGroup, setBloodGroup] = useState("");
   const [quantity, setQuantity] = useState(0);
-  const [donarEmail, setDonarEmail] = useState("");
+  const [email, setEmail] = useState("");
   const { user } = useSelector((state) => state.auth);
 
   const handleModalSubmit = async () => {
@@ -17,8 +17,7 @@ const Modal = () => {
         return toast.error("fill all the fields");
       }
       const { data } = await API.post("/inventory/create-inventory", {
-        donarEmail,
-        email: user?.email,
+        email,
         organisation: user?._id,
         inventoryType,
         bloodGroup,
@@ -30,9 +29,6 @@ const Modal = () => {
       }
     } catch (error) {
       toast.error(error.response.data.message);
-      setDonarEmail("");
-      setBloodGroup("");
-      setQuantity(0);
       console.log(error);
     }
   };
@@ -113,21 +109,21 @@ const Modal = () => {
               {inventoryType === "in" ? (
                 <InputType
                   labelText={"Donar Email"}
-                  labelFor={"donarEmail"}
+                  labelFor={"email"}
                   inputType={"email"}
-                  value={donarEmail}
+                  value={email}
                   onChange={(e) => {
-                    setDonarEmail(e.target.value);
+                    setEmail(e.target.value);
                   }}
                 />
               ) : (
                 <InputType
                   labelText={"Hospital Email"}
-                  labelFor={"donarEmail"}
+                  labelFor={"email"}
                   inputType={"email"}
-                  value={donarEmail}
+                  value={email}
                   onChange={(e) => {
-                    setDonarEmail(e.target.value);
+                    setEmail(e.target.value);
                   }}
                 />
               )}
