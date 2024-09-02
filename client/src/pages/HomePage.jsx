@@ -16,7 +16,6 @@ const Homepage = () => {
       const { data } = await API.get("/inventory/get-inventory");
       if (data?.success) {
         setData(data?.inventory);
-        console.log(data);
       }
     } catch (error) {
       console.log(error);
@@ -42,7 +41,7 @@ const Homepage = () => {
               data-bs-target="#staticBackdrop"
               style={{ cursor: "pointer" }}
             >
-              <i className="fa-solid fa-plus text-success py-4" />
+              <i className="fa-solid fa-plus" style={{ color: "#ffffff" }}></i>
               Add Inventory
             </h4>
 
@@ -61,7 +60,7 @@ const Homepage = () => {
                   <tr key={record._id}>
                     <td>{record.bloodGroup}</td>
                     <td>{record.inventoryType}</td>
-                    <td>{record.quantity}</td>
+                    <td>{record.quantity} ml</td>
                     <td>{record.donarEmail}</td>
                     <td>
                       {moment(record.createdAt).format("DD/MM/YYYY hh:mm A")}

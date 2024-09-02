@@ -25,14 +25,14 @@ const Modal = () => {
         quantity,
       });
       if (data?.success) {
+        window.location.reload();
         toast.success(data.message);
-        // window.location.reload();
-        setDonarEmail("");
-        setBloodGroup("");
-        setQuantity(0);
       }
     } catch (error) {
-      window.location.reload();
+      toast.error(error.response.data.message);
+      setDonarEmail("");
+      setBloodGroup("");
+      setQuantity(0);
       console.log(error);
     }
   };
@@ -97,7 +97,9 @@ const Modal = () => {
                 value={bloodGroup}
                 onChange={(e) => setBloodGroup(e.target.value)}
               >
-                <option selected>Select the blood group</option>
+                <option defaultValue={"Select the blood group"}>
+                  Select the blood group
+                </option>
                 <option value={"O+"}>O+</option>
                 <option value={"O-"}>O-</option>
                 <option value={"AB+"}>AB+</option>
@@ -108,15 +110,27 @@ const Modal = () => {
                 <option value={"B-"}>B-</option>
               </select>
 
-              <InputType
-                labelText={"Donar Email"}
-                labelFor={"donarEmail"}
-                inputType={"email"}
-                value={donarEmail}
-                onChange={(e) => {
-                  setDonarEmail(e.target.value);
-                }}
-              />
+              {inventoryType === "in" ? (
+                <InputType
+                  labelText={"Donar Email"}
+                  labelFor={"donarEmail"}
+                  inputType={"email"}
+                  value={donarEmail}
+                  onChange={(e) => {
+                    setDonarEmail(e.target.value);
+                  }}
+                />
+              ) : (
+                <InputType
+                  labelText={"Hospital Email"}
+                  labelFor={"donarEmail"}
+                  inputType={"email"}
+                  value={donarEmail}
+                  onChange={(e) => {
+                    setDonarEmail(e.target.value);
+                  }}
+                />
+              )}
 
               <InputType
                 labelText={"Quantity (ml)"}
