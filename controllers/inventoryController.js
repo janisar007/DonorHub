@@ -133,4 +133,30 @@ const getInventoryController = async (req, res) => {
   }
 };
 
-module.exports = { createInventoryController, getInventoryController };
+const getDonarController = async (req, res) => {
+  try {
+    const organisation = req.body.userId;
+    const donarId = await inventoryModel.distinct("donar", {
+      organisation,
+    });
+    const donars = await userModel.find({ _id: { $in: donarId } });
+    return res.status(200).send({
+      success: true,
+      message: "Donar records retrieved successfully",
+      donars,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send({
+      success: false,
+      message: "Error In get Donar API",
+      error,
+    });
+  }
+};
+
+module.exports = {
+  createInventoryController,
+  getInventoryController,
+  getDonarController,
+};
