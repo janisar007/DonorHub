@@ -63,8 +63,15 @@ table{
 }
 
 .donar-heading{
-  background-color: #FFDFD6;
+  background-color: #C8A1E0;
   color: #000;
+  text-align: center;
+  padding: 30px 0 30px 0;
+}
+
+.hospital-heading{
+  background-color: #A02334;
+  color: #fff;
   text-align: center;
   padding: 30px 0 30px 0;
 }
