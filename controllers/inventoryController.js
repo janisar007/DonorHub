@@ -155,8 +155,58 @@ const getDonarController = async (req, res) => {
   }
 };
 
+const getHospitalController = async (req, res) => {
+  try {
+    const organisation = req.body.userId;
+    const hospitalId = await inventoryModel.distinct("hospital", {
+      organisation,
+    });
+    if (!hospitalId) {
+      return res.status(404).send({
+        success: false,
+        message: "hospital not found",
+      });
+    }
+    const hospitals = await userModel.find({ _id: { $in: hospitalId } });
+    return res.status(200).send({
+      success: true,
+      message: "hospitals fetched successfully",
+      hospitals,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send({
+      success: false,
+      message: "Error In get Hospital API",
+      error,
+    });
+  }
+};
+
+const getOrganisationController = async (req, res) => {
+  try {
+    const donar = req.body.userId;
+    const orgId = await inventoryModel.distinct("organisation", { donar });
+    const organisations = await userModel.find({ _id: { $in: orgId } });
+    return res.status(200).send({
+      success: true,
+      message: "Organisation fetched successfully",
+      organisations,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send({
+      success: false,
+      message: "Error In get Organisation API",
+      error,
+    });
+  }
+};
+
 module.exports = {
   createInventoryController,
   getInventoryController,
   getDonarController,
+  getHospitalController,
+  getOrganisationController,
 };
