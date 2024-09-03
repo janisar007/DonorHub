@@ -4,14 +4,14 @@ import API from "../../services/API";
 import { toast } from "react-toastify";
 import moment from "moment";
 
-const Donar = () => {
+const Hospitals = () => {
   const [data, setData] = useState([]);
 
-  const getDonars = async () => {
+  const getHospitals = async () => {
     try {
-      const { data } = await API.get("/inventory/get-donar");
+      const { data } = await API.get("/inventory/get-hospital");
       if (data?.success) {
-        setData(data?.donars);
+        setData(data?.hospitals);
       }
     } catch (error) {
       toast.error(error.response.data.message);
@@ -19,16 +19,13 @@ const Donar = () => {
   };
 
   useEffect(() => {
-    getDonars();
+    getHospitals();
   }, []);
   return (
     <Layout>
-      <h3 className="mx-auto donar-heading">
-        Donar Details{" "}
-        <i
-          className="fa-solid fa-hand-holding-medical fa-flip-horizontal"
-          style={{ color: "#000000s" }}
-        />
+      <h3 className="mx-auto hospital-heading">
+        Hospital Details{" "}
+        <i className="fa-solid fa-hospital mx-2" style={{ color: "#ffffff" }} />
       </h3>
       <div className="container donar-data">
         <table className="table table-hover">
@@ -37,15 +34,17 @@ const Donar = () => {
               <th scope="col">Name</th>
               <th scope="col">Email</th>
               <th scope="col">Phone</th>
+              <th scope="col">Address</th>
               <th scope="col">Date & Time</th>
             </tr>
           </thead>
           <tbody>
             {data?.map((record) => (
               <tr key={record._id}>
-                <td>{record.name || record.organisationName + " (ORG)"}</td>
+                <td>{record.hospitalName}</td>
                 <td>{record.email}</td>
                 <td>{record.phone}</td>
+                <td>{record.address}</td>
                 <td>{moment(record.createdAt).format("DD/MM/YYYY hh:mm A")}</td>
               </tr>
             ))}
@@ -56,4 +55,4 @@ const Donar = () => {
   );
 };
 
-export default Donar;
+export default Hospitals;

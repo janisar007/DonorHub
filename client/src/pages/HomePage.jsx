@@ -41,7 +41,10 @@ const Homepage = () => {
               data-bs-target="#staticBackdrop"
               style={{ cursor: "pointer" }}
             >
-              <i className="fa-solid fa-plus" style={{ color: "#ffffff" }}></i>
+              <i
+                className="fa-solid fa-plus mx-2"
+                style={{ color: "#ffffff" }}
+              ></i>
               Add Inventory
             </h4>
 
