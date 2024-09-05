@@ -203,10 +203,31 @@ const getOrganisationController = async (req, res) => {
   }
 };
 
+const getOrganisationForHospitalController = async (req, res) => {
+  try {
+    const hospital = req.body.userId;
+    const orgId = await inventoryModel.distinct("organisation", { hospital });
+    const organisations = await userModel.find({ _id: { $in: orgId } });
+    return res.status(200).send({
+      success: true,
+      message: "Hospital Org fetched successfully",
+      organisations,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send({
+      success: false,
+      message: "Error In Hospital Org API",
+      error,
+    });
+  }
+};
+
 module.exports = {
   createInventoryController,
   getInventoryController,
   getDonarController,
   getHospitalController,
   getOrganisationController,
+  getOrganisationForHospitalController,
 };
