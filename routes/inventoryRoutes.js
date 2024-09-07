@@ -7,6 +7,7 @@ const {
   getHospitalController,
   getOrganisationController,
   getOrganisationForHospitalController,
+  getInventoryHospitalController,
 } = require("../controllers/inventoryController");
 
 const router = express.Router();
@@ -31,6 +32,13 @@ router.get(
   "/get-organisation-for-hospital",
   authMiddleware,
   getOrganisationForHospitalController
+);
+
+// Get Hospital-Consumer Inventory || POST method
+router.post(
+  "/get-inventory-hospital",
+  authMiddleware,
+  getInventoryHospitalController
 );
 
 module.exports = router;
