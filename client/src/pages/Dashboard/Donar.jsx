@@ -30,27 +30,31 @@ const Donar = () => {
           style={{ color: "#000000s" }}
         />
       </h3>
-      <div className="container donar-data">
-        <table className="table table-hover">
-          <thead>
-            <tr>
-              <th scope="col">Name</th>
-              <th scope="col">Email</th>
-              <th scope="col">Phone</th>
-              <th scope="col">Date & Time</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data?.map((record) => (
-              <tr key={record._id}>
-                <td>{record.name || record.organisationName + " (ORG)"}</td>
-                <td>{record.email}</td>
-                <td>{record.phone}</td>
-                <td>{moment(record.createdAt).format("DD/MM/YYYY hh:mm A")}</td>
+      <div className="container">
+        <div className="container donar-data">
+          <table className="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Date & Time</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {data?.map((record) => (
+                <tr key={record._id}>
+                  <td>{record.name || record.organisationName + " (ORG)"}</td>
+                  <td>{record.email}</td>
+                  <td>{record.phone}</td>
+                  <td>
+                    {moment(record.createdAt).format("DD/MM/YYYY hh:mm A")}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </Layout>
   );

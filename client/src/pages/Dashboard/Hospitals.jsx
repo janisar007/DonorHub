@@ -27,29 +27,33 @@ const Hospitals = () => {
         Hospital Details{" "}
         <i className="fa-solid fa-hospital mx-2" style={{ color: "#ffffff" }} />
       </h3>
-      <div className="container donar-data">
-        <table className="table table-hover">
-          <thead>
-            <tr>
-              <th scope="col">Name</th>
-              <th scope="col">Email</th>
-              <th scope="col">Phone</th>
-              <th scope="col">Address</th>
-              <th scope="col">Date & Time</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data?.map((record) => (
-              <tr key={record._id}>
-                <td>{record.hospitalName}</td>
-                <td>{record.email}</td>
-                <td>{record.phone}</td>
-                <td>{record.address}</td>
-                <td>{moment(record.createdAt).format("DD/MM/YYYY hh:mm A")}</td>
+      <div className="container">
+        <div className="container donar-data">
+          <table className="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Address</th>
+                <th scope="col">Date & Time</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {data?.map((record) => (
+                <tr key={record._id}>
+                  <td>{record.hospitalName}</td>
+                  <td>{record.email}</td>
+                  <td>{record.phone}</td>
+                  <td>{record.address}</td>
+                  <td>
+                    {moment(record.createdAt).format("DD/MM/YYYY hh:mm A")}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </Layout>
   );
