@@ -17,20 +17,20 @@ const Header = () => {
     <div>
       <nav className="navbar">
         <div className="container-fluid">
-          <div className="navbar-brand h1">
-            <BiSolidDonateBlood color="red" className="mx-3 text-xl-start" />
-            DonorHub -- The Blood Bank App
+          <div className="navbar-brand h1 texx">
+            <BiSolidDonateBlood
+              color="red"
+              className="mx-3 text-xl-start icon"
+            />
+            DonorHub
           </div>
           <ul className="navbar-nav d-flex flex-row align-items-center">
             <li className="nav-item mx-3">
-              <p className="nav-link">
-                <FaUser className="mx-1" />
+              <p className="nav-link texx">
                 Welcome{" "}
-                {user?.name ||
-                  user?.hospitalName ||
-                  user?.organisationName}{" "}
-                &nbsp;
-                <span className="badge bg-secondary">{user?.role}</span>
+                {user?.name || user?.hospitalName || user?.organisationName}{" "}
+                <FaUser className="mx-1" />{" "}
+                <span className="badge bg-primary">{user?.role}</span>
               </p>
             </li>
             <li className="nav-item mx-3">
