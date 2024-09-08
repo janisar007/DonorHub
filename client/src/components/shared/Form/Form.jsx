@@ -6,6 +6,7 @@ import { handleLogin, handleRegister } from "../../../services/authService";
 const Form = ({ submitBtn, formTitle, formType }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmpassword, setConfirmPassword] = useState("");
   const [role, setRole] = useState("donar");
   const [name, setName] = useState("");
   const [organisationName, setOrganisationName] = useState("");
@@ -24,6 +25,7 @@ const Form = ({ submitBtn, formTitle, formType }) => {
               e,
               email,
               password,
+              confirmpassword,
               role,
               name,
               organisationName,
@@ -174,6 +176,15 @@ const Form = ({ submitBtn, formTitle, formType }) => {
                     name={"password"}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                  />
+
+                  <InputType
+                    labelText={"Confirm Password"}
+                    labelFor={"ConfirmPassword"}
+                    inputType={"password"}
+                    name={"Confirmpassword"}
+                    value={confirmpassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
                   />
 
                   <InputType
