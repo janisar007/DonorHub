@@ -18,6 +18,7 @@ export const handleRegister = (
   e,
   email,
   password,
+  confirmpassword,
   role,
   name,
   organisationName,
@@ -28,6 +29,9 @@ export const handleRegister = (
 ) => {
   e.preventDefault();
   try {
+    if (password !== confirmpassword) {
+      return toast.error("Password and Confirm Password mismatch");
+    }
     store.dispatch(
       userRegister({
         email,
