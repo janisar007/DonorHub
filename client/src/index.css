@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 .form-banner img{
@@ -73,8 +74,8 @@ table{
 }
 
 .donar-heading{
-  background-color: #C8A1E0;
-  color: #000;
+  background-color: #FFDBB5;
+  color: #603F26;
   text-align: center;
   padding: 30px 0 30px 0;
 }
@@ -96,6 +97,29 @@ table{
   background-color: #ffffff;
   color: #059212;
   border: 2px solid #059212;
+}
+
+.analytics-container{
+  width: 85%;
+  margin: 50px auto 0 auto;
+}
+
+.analytics-card{
+  transition: 0.2s ease-in-out;
+  border-radius: 10px;
+}
+
+.analytics-card h1{
+  border: 0.5px solid black;
+  border-radius: 10px;
+}
+
+.analytics-card:hover{
+  transform: scale(0.95);
+}
+
+.analytics-card .card-footer{
+  border-radius: 10px;
 }
 
 
