@@ -2,12 +2,13 @@ import React from "react";
 import { BiSolidDonateBlood } from "react-icons/bi";
 import { FaUser } from "react-icons/fa";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const Header = () => {
   const { user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
+  const location = useLocation();
   const handleLogout = () => {
     localStorage.clear();
     toast.success("Log out successful");
@@ -27,12 +28,27 @@ const Header = () => {
           <ul className="navbar-nav d-flex flex-row align-items-center">
             <li className="nav-item mx-3">
               <p className="nav-link texx">
-                Welcome{" "}
                 {user?.name || user?.hospitalName || user?.organisationName}{" "}
                 <FaUser className="mx-1" />{" "}
                 <span className="badge bg-primary">{user?.role}</span>
               </p>
             </li>
+
+            {location.pathname === "/" ||
+            location.pathname === "/donar" ||
+            location.pathname === "/hospital" ? (
+              <li className="nav-item mx-3">
+                <Link to={"/analytics"} className="nav-link texx">
+                  Analytics
+                </Link>
+              </li>
+            ) : (
+              <li className="nav-item mx-3">
+                <Link to={"/"} className="nav-link texx">
+                  Home
+                </Link>
+              </li>
+            )}
             <li className="nav-item mx-3">
               <button className="btn btn-danger" onClick={handleLogout}>
                 Logout
