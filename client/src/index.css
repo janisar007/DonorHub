@@ -107,6 +107,7 @@ table{
 .analytics-card{
   transition: 0.2s ease-in-out;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .analytics-card h1{
@@ -120,6 +121,15 @@ table{
 
 .analytics-card .card-footer{
   border-radius: 10px;
+}
+
+.deleteIcon{
+  font-size: 15px;
+  transition: 0.8s;
+}
+
+.deleteIcon:active{
+  transform: scale(0.8);
 }
 
 
