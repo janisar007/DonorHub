@@ -30,6 +30,8 @@ const Homepage = () => {
   return (
     <Layout>
       {user?.role === "admin" && navigate("/admin")}
+      {user?.role === "donar" && navigate("/donar")}
+      {user?.role === "hospital" && navigate("/hospital")}
       {error && (
         <span style={{ display: "none" }}>{toast.error(error.payload)}</span>
       )}

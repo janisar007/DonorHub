@@ -13,7 +13,9 @@ const Sidebar = () => {
           {user?.role === "organisation" && (
             <>
               <div
-                className={`menu-item ${location.pathname === "/" && "active"}`}
+                className={`menu-item ${
+                  location.pathname === "/organisation" && "active"
+                }`}
               >
                 <i className="fa-solid fa-warehouse"></i>
                 <Link to="/">Inventory</Link>
@@ -39,17 +41,6 @@ const Sidebar = () => {
             </>
           )}
 
-          {(user?.role === "donar" || user?.role === "hospital") && (
-            <div
-              className={`menu-item ${
-                location.pathname === "/organisation" && "active"
-              }`}
-            >
-              <i className="fa-solid fa-building-ngo"></i>
-              <Link to="/organisation">Organisation</Link>
-            </div>
-          )}
-
           {user?.role === "hospital" && (
             <div
               className={`menu-item ${
@@ -70,6 +61,48 @@ const Sidebar = () => {
               <i className="fa-solid fa-hand-holding-medical fa-flip-horizontal"></i>
               <Link to="/donation">Donations</Link>
             </div>
+          )}
+
+          {(user?.role === "donar" || user?.role === "hospital") && (
+            <div
+              className={`menu-item ${
+                location.pathname === "/organisation" && "active"
+              }`}
+            >
+              <i className="fa-solid fa-building-ngo"></i>
+              <Link to="/organisation">Organisation</Link>
+            </div>
+          )}
+
+          {user?.role === "admin" && (
+            <>
+              <div
+                className={`menu-item ${
+                  location.pathname === "/donar-list" && "active"
+                }`}
+              >
+                <i className="fa-solid fa-warehouse"></i>
+                <Link to="/donar-list">Donar List</Link>
+              </div>
+
+              <div
+                className={`menu-item ${
+                  location.pathname === "/hospital-list" && "active"
+                }`}
+              >
+                <i className="fa-solid fa-hand-holding-medical"></i>
+                <Link to="/hospital-list">Hospital List</Link>
+              </div>
+
+              <div
+                className={`menu-item ${
+                  location.pathname === "/org-list" && "active"
+                }`}
+              >
+                <i className="fa-solid fa-hospital"></i>
+                <Link to="/org-list">Organisation List</Link>
+              </div>
+            </>
           )}
 
           {/* {userMenu.map((menu) => {
