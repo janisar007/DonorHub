@@ -5,6 +5,9 @@ const {
   getDonarsListController,
   getHospitalsListController,
   getOrganisationsListController,
+  deleteDonarController,
+  deleteHospitalController,
+  deleteOrganisationController,
 } = require("../controllers/adminController");
 
 const router = express.Router();
@@ -31,6 +34,32 @@ router.get(
   authMiddleware,
   adminMiddleware,
   getOrganisationsListController
+);
+
+// routes for deleting
+
+//Delete || donars
+router.delete(
+  "/delete-donar/:id",
+  authMiddleware,
+  adminMiddleware,
+  deleteDonarController
+);
+
+//Delete || hospitals
+router.delete(
+  "/delete-hospital/:id",
+  authMiddleware,
+  adminMiddleware,
+  deleteHospitalController
+);
+
+//Delete || hospitals
+router.delete(
+  "/delete-organisation/:id",
+  authMiddleware,
+  adminMiddleware,
+  deleteOrganisationController
 );
 
 module.exports = router;

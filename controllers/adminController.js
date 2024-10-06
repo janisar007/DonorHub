@@ -64,8 +64,64 @@ const getOrganisationsListController = async (req, res) => {
   }
 };
 
+// controllers for deleting
+
+const deleteDonarController = async (req, res) => {
+  try {
+    await userModel.findByIdAndDelete(req.params.id);
+    return res.status(200).send({
+      success: true,
+      message: "Donar Deleted Successfully",
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send({
+      success: false,
+      message: "Error in Delete Donar API",
+      error,
+    });
+  }
+};
+
+const deleteHospitalController = async (req, res) => {
+  try {
+    await userModel.findByIdAndDelete(req.params.id);
+    return res.status(200).send({
+      success: true,
+      message: "Hospital Deleted Successfully",
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send({
+      success: false,
+      message: "Error in Delete Hospital API",
+      error,
+    });
+  }
+};
+
+const deleteOrganisationController = async (req, res) => {
+  try {
+    await userModel.findByIdAndDelete(req.params.id);
+    return res.status(200).send({
+      success: true,
+      message: "Organisation Deleted Successfully",
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send({
+      success: false,
+      message: "Error in Delete Hospital API",
+      error,
+    });
+  }
+};
+
 module.exports = {
   getDonarsListController,
   getHospitalsListController,
   getOrganisationsListController,
+  deleteDonarController,
+  deleteHospitalController,
+  deleteOrganisationController,
 };
