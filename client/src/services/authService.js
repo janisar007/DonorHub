@@ -29,6 +29,20 @@ export const handleRegister = (
 ) => {
   e.preventDefault();
   try {
+    if (
+      !role ||
+      !email ||
+      !password ||
+      !address ||
+      !phone ||
+      (role === "donar" && !name) ||
+      (role === "hospital" &&
+        !hospitalName &&
+        role === "organisation" &&
+        !organisationName)
+    ) {
+      return toast.warning("Fill all the fields");
+    }
     if (password !== confirmpassword) {
       return toast.error("Password and Confirm Password mismatch");
     }
