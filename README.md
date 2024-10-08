@@ -1,10 +1,6 @@
 # DonorHub
 
-DonorHub is a comprehensive platform designed to bridge the gap
-between blood donors, hospitals, and organizations. By offering a
-user-friendly interface and powerful tools, DonorHub ensures that the
-life-saving process of blood donation becomes smoother, faster, and
-more accessible to everyone involved.
+DonorHub, a platform that simplifies blood donation by connecting donors, hospitals, and organizations. The platform enables organizations and NGOs to manage blood records online, moving away from traditional Excel sheets.
 
 Consists of 4 different users -- **Donar**,**Hospital**,**Organisation** and **Admin**
 
