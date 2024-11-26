@@ -28,11 +28,11 @@ app.use("/api/v1/analytics", require("./routes/analyticsRoutes"));
 app.use("/api/v1/admin", require("./routes/adminRoutes"));
 
 //port
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 4000;
 
 app.listen(PORT, () => {
   console.log(
-    `Server is Running in ${process.env.DEV_MODE} mode on Port ${process.env.PORT}`
+    `Server is Running on Port ${process.env.PORT}`
       .bgBlue.white
   );
 });
