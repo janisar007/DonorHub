@@ -13,13 +13,33 @@ dotenv.config();
 
 //mongoDB connection
 connectDB();
+const app = express();
+// app.use(cors());
+
+const allowedOrigins = ['http://localhost:3000', 'https://donor-hub-client.vercel.app'];
+
+// Use CORS middleware
+app.use(cors({
+    origin: (origin, callback) => {
+        // Allow requests with no origin (e.g., mobile apps or curl)
+        if (!origin) return callback(null, true);
+
+        if (allowedOrigins.includes(origin)) {
+            return callback(null, true);
+        } else {
+            const msg = 'The CORS policy for this site does not allow access from the specified origin.';
+            return callback(new Error(msg), false);
+        }
+    },
+    credentials: true, // If using cookies or credentials
+}));
 
 //rest object
-const app = express();
+
+// app.use(cors());
 
 //middlewares
 app.use(express.json());
-app.use(cors());
 app.use(morgan("dev"));
 
 app.use("/api/v1/auth", require("./routes/authRoutes"));
